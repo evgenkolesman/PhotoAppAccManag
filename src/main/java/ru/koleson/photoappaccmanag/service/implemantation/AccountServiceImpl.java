@@ -6,6 +6,7 @@ import ru.koleson.photoappaccmanag.model.AccountDetailRequestModel;
 import ru.koleson.photoappaccmanag.model.AccountRest;
 import ru.koleson.photoappaccmanag.repository.AccountRepository;
 import ru.koleson.photoappaccmanag.service.AccountService;
+import ru.koleson.photoappaccmanag.util.Utils;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +16,13 @@ import java.util.Optional;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository repository;
+    private final Utils utils;
 
     @Override
     public AccountRest create(AccountDetailRequestModel account) {
-        return repository.save(AccountRest.of(account));
+        AccountRest accountRest = AccountRest.of(account);
+        accountRest.setAccountId(utils.generatedUserId());
+        return repository.save(accountRest);
     }
 
     @Override
@@ -27,13 +31,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void delete(Long accountId) {
+    public void delete(String accountId) {
         if (repository.existsById(accountId))
         repository.deleteById(accountId);
     }
 
     @Override
-    public Optional<AccountRest> findAccount(Long accountId) {
+    public Optional<AccountRest> findAccount(String accountId) {
         return repository.findById(accountId);
     }
 

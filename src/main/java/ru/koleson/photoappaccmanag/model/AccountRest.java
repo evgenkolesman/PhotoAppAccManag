@@ -3,6 +3,7 @@ package ru.koleson.photoappaccmanag.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -14,9 +15,11 @@ import javax.persistence.*;
 public class AccountRest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "accountId")
-    private Long accountId;
+    private String accountId;
 
     private String firstName;
 

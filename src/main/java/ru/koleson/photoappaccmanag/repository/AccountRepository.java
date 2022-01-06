@@ -5,7 +5,7 @@ import ru.koleson.photoappaccmanag.model.AccountRest;
 
 import java.util.List;
 
-public interface AccountRepository extends JpaRepository<AccountRest, Long> {
+public interface AccountRepository extends JpaRepository<AccountRest, String> {
 
      List<AccountRest> findAll();
 

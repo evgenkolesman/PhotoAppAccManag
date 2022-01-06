@@ -1,6 +1,5 @@
 package ru.koleson.photoappaccmanag.service;
 
-
 import org.springframework.stereotype.Service;
 import ru.koleson.photoappaccmanag.model.AccountDetailRequestModel;
 import ru.koleson.photoappaccmanag.model.AccountRest;
@@ -15,9 +14,9 @@ public interface AccountService {
 
     AccountRest update(AccountDetailRequestModel account);
 
-    void delete(Long accountId);
+    void delete(String accountId);
 
-    Optional<AccountRest> findAccount(Long id);
+    Optional<AccountRest> findAccount(String id);
 
     List<AccountRest> findAll();
 }
