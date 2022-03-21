@@ -30,12 +30,13 @@ public class AccountController {
     public String status() {
         return "Api is working well " + env.getProperty("local.server.port");
     }
+
     @GetMapping
     public List<AccountRest> getAllAccount() {
         return accountService.findAll();
     }
 
-    @GetMapping(path = "/accountId", consumes = {
+    @GetMapping(path = "/{accountId}", consumes = {
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE
     })
